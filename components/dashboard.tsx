@@ -191,7 +191,7 @@ export function Dashboard() {
     setShowActivityModal(true)
   }
 
-  const handleAssetTrade = (asset) => {
+  const handleAssetTrade = (asset: any) => {
     setSelectedAsset(asset)
     window.location.href = `/trade?asset=${asset.symbol}`
   }
@@ -201,21 +201,25 @@ export function Dashboard() {
       <Navbar />
       <div className="container py-8">
         {/* Hero Section */}
-        <section className="mb-12">
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="flex flex-col justify-center space-y-4">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/20">
+        <section className="mb-12 px-4 md:px-8 lg:px-16">
+          <div className="grid gap-12 md:grid-cols-2 items-center">
+            <div className="flex flex-col justify-center space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Badge className="mb-4 bg-gradient-to-r from-teal-400/20 to-purple-500/20 text-primary text-white dark:text-black">
                   Decentralized Asset Ecosystem
                 </Badge>
-                <h1 className="font-display text-4xl font-bold tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+                <h1 className="font-montserrat text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-primary dark:text-white">
                   Tokenize Reality.
                   <br />
-                  <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-[#0B1D3A] to-[#8E7CFF] dark:from-[#1FC6C1] dark:to-white bg-clip-text text-transparent">
                     Unlock Value.
                   </span>
                 </h1>
-                <p className="mt-4 max-w-md text-lg text-gray-600">
+                <p className="mt-4 max-w-md text-lg text-gray-700 dark:text-gray-300 font-sans">
                   Transform your physical and digital assets into tokenized value in the decentralized ecosystem.
                 </p>
               </motion.div>
@@ -225,54 +229,69 @@ export function Dashboard() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:opacity-90">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-[#0B1D3A] text-white hover:bg-[#0B1D3A]/90 transition-all"
+                >
                   <Link href="/tokenize">
                     Get Started
                     <ArrowUpRight className="ml-2 size-4" />
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-primary text-primary dark:text-white hover:border-teal-400 dark:hover:border-purple-400"
+                >
                   Learn More
                 </Button>
               </motion.div>
             </div>
+
+            {/* Future visual content placeholder */}
+
             <motion.div
-              className="h-[400px] w-full rounded-xl bg-gradient-to-br from-[#FF6B6B]/10 to-[#FFE66D]/10 p-4"
+              className="h-[400px] w-full rounded-2xl bg-gradient-to-br from-[#0B1D3A]/10 to-[#8E7CFF]/10 dark:from-[#1FC6C1]/10 dark:to-white/10 p-4 shadow-md"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7 }}
             >
               <HeroScene />
             </motion.div>
+
           </div>
         </section>
 
+
         {/* Quick Actions */}
-        <section className="mb-12">
-          <h2 className="mb-6 font-display text-2xl font-bold text-gray-900">Quick Actions</h2>
+        <section className="mb-12 px-4 md:px-8 lg:px-16">
+          <h2 className="mb-6 font-montserrat text-2xl font-semibold text-[#0B1D3A] dark:text-white">
+            Quick Actions
+          </h2>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
-              { icon: Layers, label: "Tokenize", href: "/tokenize", color: "from-[#FF6B6B] to-[#FF9671]" },
-              { icon: BarChart3, label: "Trade", href: "/trade", color: "from-[#FFE66D] to-[#FFC75F]" },
-              { icon: CreditCard, label: "Lend", href: "/lend", color: "from-[#FF6B6B] to-[#FFE66D]" },
-              { icon: Gift, label: "Donate", href: "/community", color: "from-[#4ECDC4] to-[#6A0572]" },
+              { icon: Layers, label: "Tokenize", href: "/tokenize", color: "from-[#1FC6C1] to-[#8E7CFF]" },
+              { icon: BarChart3, label: "Trade", href: "/trade", color: "from-[#8E7CFF] to-[#1FC6C1]" },
+              { icon: CreditCard, label: "Lend", href: "/lend", color: "from-[#1FC6C1] to-[#0B1D3A]" },
+              { icon: Gift, label: "Donate", href: "/community", color: "from-[#8E7CFF] to-[#0B1D3A]" },
             ].map((action, index) => (
               <Link key={action.label} href={action.href}>
                 <motion.div
-                  className="group relative overflow-hidden rounded-xl border bg-card p-6 shadow-sm transition-all hover:shadow-md"
+                  className="group relative overflow-hidden rounded-2xl border border-transparent bg-gradient-to-br from-white to-gray-50 dark:from-[#0B1D3A] dark:to-[#0B1D3A]/80 p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all hover:scale-[1.02] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)] hover:border-teal-400 dark:hover:border-purple-400"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 * index }}
                   whileHover={{ y: -5 }}
                 >
                   <div
-                    className={`absolute -right-6 -top-6 size-24 rounded-full bg-primary/10 opacity-10 blur-xl transition-all group-hover:opacity-20`}
+                    className={`absolute -right-6 -top-6 size-24 rounded-full bg-gradient-to-br ${action.color} opacity-10 blur-xl transition-all group-hover:opacity-20`}
                   />
-                  <div className={`mb-3 flex size-12 items-center justify-center rounded-full bg-primary/10`}>
-                    <action.icon className="size-6 text-primary" />
+                  <div className={`mb-3 flex size-12 items-center justify-center rounded-full bg-gradient-to-r ${action.color}`}>
+                    <action.icon className="size-6 text-white" />
                   </div>
-                  <h3 className="font-medium text-foreground">{action.label}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <h3 className="font-montserrat text-base font-medium text-[#0B1D3A] dark:text-white">{action.label}</h3>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     Quick access to {action.label.toLowerCase()} features
                   </p>
                 </motion.div>
@@ -281,15 +300,17 @@ export function Dashboard() {
           </div>
         </section>
 
+
         {/* Portfolio Overview */}
-        <section className="mb-12">
+        <section className="mb-12 px-4 md:px-8 lg:px-16">
           <div className="grid gap-8 md:grid-cols-3">
+            {/* Portfolio Performance Chart */}
             <div className="md:col-span-2">
-              <Card>
+              <Card className="rounded-2xl bg-gradient-to-br from-white to-gray-50 dark:from-[#0B1D3A] dark:to-[#0B1D3A]/80 shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <div>
-                    <CardTitle>Portfolio Performance</CardTitle>
-                    <CardDescription>Track your asset value over time</CardDescription>
+                    <CardTitle className="text-[#0B1D3A] dark:text-white font-montserrat">Portfolio Performance</CardTitle>
+                    <CardDescription className="text-gray-600 dark:text-gray-400">Track your asset value over time</CardDescription>
                   </div>
                   <div className="flex items-center gap-2">
                     {["1w", "1m", "3m", "1y", "all"].map((period) => (
@@ -297,7 +318,7 @@ export function Dashboard() {
                         key={period}
                         variant={timeframe === period ? "secondary" : "ghost"}
                         size="sm"
-                        className="h-8"
+                        className={`h-8 ${timeframe === period ? "bg-teal-500 text-white" : "text-gray-700 dark:text-gray-300"}`}
                         onClick={() => setTimeframe(period)}
                       >
                         {period.toUpperCase()}
@@ -312,18 +333,21 @@ export function Dashboard() {
                 </CardContent>
               </Card>
             </div>
+
+            {/* Portfolio Stats + Recent Activity */}
             <div className="space-y-8">
-              <Card>
+              {/* Portfolio Stats */}
+              <Card className="rounded-2xl bg-gradient-to-br from-white to-gray-50 dark:from-[#0B1D3A] dark:to-[#0B1D3A]/80 shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
                 <CardHeader>
-                  <CardTitle>Portfolio Stats</CardTitle>
-                  <CardDescription>Current value and metrics</CardDescription>
+                  <CardTitle className="text-[#0B1D3A] dark:text-white font-montserrat">Portfolio Stats</CardTitle>
+                  <CardDescription className="text-gray-600 dark:text-gray-400">Current value and metrics</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <div className="text-sm text-gray-500">Total Value</div>
-                    <div className="text-3xl font-bold text-gray-900">${totalValue.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Total Value</div>
+                    <div className="text-3xl font-bold text-[#0B1D3A] dark:text-white">${totalValue.toLocaleString()}</div>
                     <div
-                      className={`flex items-center text-sm ${totalChange >= 0 ? "text-green-600" : "text-red-600"}`}
+                      className={`flex items-center text-sm ${totalChange >= 0 ? "text-green-500" : "text-red-500"}`}
                     >
                       {totalChange >= 0 ? (
                         <TrendingUp className="mr-1 size-4" />
@@ -336,22 +360,22 @@ export function Dashboard() {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <div className="text-sm text-gray-500">Assets</div>
-                      <div className="text-lg font-medium text-gray-900">{assets.length}</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">Assets</div>
+                      <div className="text-lg font-medium text-[#0B1D3A] dark:text-white">{assets.length}</div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-sm text-gray-500">Categories</div>
-                      <div className="text-lg font-medium text-gray-900">4</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">Categories</div>
+                      <div className="text-lg font-medium text-[#0B1D3A] dark:text-white">4</div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-sm text-gray-500">Highest Value</div>
-                      <div className="text-lg font-medium text-gray-900">
+                      <div className="text-sm text-gray-500 dark:text-gray-400">Highest Value</div>
+                      <div className="text-lg font-medium text-[#0B1D3A] dark:text-white">
                         ${Math.max(...assets.map((a) => a.value)).toLocaleString()}
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <div className="text-sm text-gray-500">Best Performer</div>
-                      <div className="text-lg font-medium text-green-600">
+                      <div className="text-sm text-gray-500 dark:text-gray-400">Best Performer</div>
+                      <div className="text-lg font-medium text-green-500">
                         +{Math.max(...assets.map((a) => a.change))}%
                       </div>
                     </div>
@@ -359,25 +383,27 @@ export function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card>
+              {/* Recent Activity */}
+              <Card className="rounded-2xl bg-gradient-to-br from-white to-gray-50 dark:from-[#0B1D3A] dark:to-[#0B1D3A]/80 shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
                 <CardHeader>
-                  <CardTitle>Recent Activity</CardTitle>
-                  <CardDescription>Latest transactions and updates</CardDescription>
+                  <CardTitle className="text-[#0B1D3A] dark:text-white font-montserrat">Recent Activity</CardTitle>
+                  <CardDescription className="text-gray-600 dark:text-gray-400">Latest transactions and updates</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     {recentActivity.map((activity) => (
                       <div key={activity.id} className="flex items-center gap-3">
                         <div
-                          className={`flex size-10 items-center justify-center rounded-full ${
-                            activity.type === "purchase"
+                          className={`flex size-10 items-center justify-center rounded-full
+                    ${activity.type === "purchase"
                               ? "bg-green-100 text-green-600"
                               : activity.type === "sale"
                                 ? "bg-red-100 text-red-600"
                                 : activity.type === "dividend"
                                   ? "bg-blue-100 text-blue-600"
                                   : "bg-purple-100 text-purple-600"
-                          }`}
+                            }
+                    dark:bg-opacity-20 dark:text-white`}
                         >
                           {activity.type === "purchase" ? (
                             <TrendingUp className="size-5" />
@@ -391,14 +417,16 @@ export function Dashboard() {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
-                            <div className="font-medium text-gray-900">
+                            <div className="font-medium text-[#0B1D3A] dark:text-white">
                               {activity.type.charAt(0).toUpperCase() + activity.type.slice(1)}
                             </div>
-                            <div className="text-sm font-medium text-gray-900">{activity.amount}</div>
+                            <div className="text-sm font-medium text-[#0B1D3A] dark:text-white">
+                              {activity.amount}
+                            </div>
                           </div>
                           <div className="flex items-center justify-between">
-                            <div className="text-sm text-gray-500">{activity.asset}</div>
-                            <div className="flex items-center text-xs text-gray-500">
+                            <div className="text-sm text-gray-500 dark:text-gray-400">{activity.asset}</div>
+                            <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
                               <Clock className="mr-1 size-3" />
                               {activity.time}
                             </div>
@@ -409,7 +437,11 @@ export function Dashboard() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button variant="outline" className="w-full" onClick={handleViewAllActivity}>
+                  <Button
+                    variant="outline"
+                    className="w-full border-primary text-primary dark:text-white dark:border-white hover:border-teal-400 dark:hover:border-purple-400"
+                    onClick={handleViewAllActivity}
+                  >
                     View All Activity
                   </Button>
                 </CardFooter>
@@ -418,12 +450,13 @@ export function Dashboard() {
           </div>
         </section>
 
+
         {/* Asset Cards */}
-        <section>
+        <section className="px-4 md:px-8 lg:px-16">
           <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <h2 className="font-display text-2xl font-bold text-gray-900">Your Assets</h2>
+            <h2 className="font-display text-2xl font-bold text-[#0B1D3A] dark:text-white">Your Assets</h2>
             <Tabs defaultValue="all" onValueChange={setActiveTab} className="w-full sm:w-auto">
-              <TabsList>
+              <TabsList className="bg-gray-100 dark:bg-[#111827]">
                 <TabsTrigger value="all">All</TabsTrigger>
                 <TabsTrigger value="property">Property</TabsTrigger>
                 <TabsTrigger value="collectible">Collectible</TabsTrigger>
@@ -432,6 +465,7 @@ export function Dashboard() {
               </TabsList>
             </Tabs>
           </div>
+
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {filteredAssets.map((asset, index) => (
               <motion.div
@@ -440,11 +474,13 @@ export function Dashboard() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.05 * index }}
               >
-                <Card className="group overflow-hidden transition-all hover:shadow-md">
+                <Card className="group overflow-hidden rounded-2xl bg-white dark:bg-[#0B1D3A] transition-all hover:shadow-xl border border-gray-200 dark:border-white/10">
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
-                      <Badge variant="outline">{asset.symbol}</Badge>
-                      <div className={`text-sm font-medium ${asset.change >= 0 ? "text-green-600" : "text-red-600"}`}>
+                      <Badge variant="outline" className="text-[#0B1D3A] dark:text-white border-gray-300 dark:border-white/20">
+                        {asset.symbol}
+                      </Badge>
+                      <div className={`text-sm font-medium ${asset.change >= 0 ? "text-green-500" : "text-red-500"}`}>
                         {asset.change >= 0 ? "+" : ""}
                         {asset.change}%
                       </div>
@@ -452,7 +488,7 @@ export function Dashboard() {
                   </CardHeader>
                   <CardContent className="pb-3">
                     <div className="mb-3 flex items-center gap-3">
-                      <div className="size-16 overflow-hidden rounded-md bg-gray-100">
+                      <div className="size-16 overflow-hidden rounded-md bg-gray-100 dark:bg-white/10">
                         <Image
                           src={asset.image || "/placeholder.svg"}
                           width={80}
@@ -462,8 +498,8 @@ export function Dashboard() {
                         />
                       </div>
                       <div>
-                        <h3 className="font-medium text-gray-900">{asset.name}</h3>
-                        <p className="text-sm text-gray-500">
+                        <h3 className="font-medium text-[#0B1D3A] dark:text-white">{asset.name}</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
                           {asset.type === "property"
                             ? asset.location
                             : asset.type === "collectible"
@@ -474,13 +510,20 @@ export function Dashboard() {
                         </p>
                       </div>
                     </div>
-                    <div className="text-2xl font-bold text-gray-900">${asset.value.toLocaleString()}</div>
+                    <div className="text-2xl font-bold text-[#0B1D3A] dark:text-white">
+                      ${asset.value.toLocaleString()}
+                    </div>
                   </CardContent>
-                  <CardFooter className="flex items-center justify-between border-t pt-3">
-                    <Button variant="ghost" size="sm">
+                  <CardFooter className="flex items-center justify-between border-t border-gray-200 dark:border-white/10 pt-3">
+                    <Button variant="ghost" size="sm" className="text-primary dark:text-white hover:underline">
                       Details
                     </Button>
-                    <Button variant="outline" size="sm" onClick={() => handleAssetTrade(asset)}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-primary text-primary dark:text-white dark:border-white hover:border-teal-400 dark:hover:border-purple-400"
+                      onClick={() => handleAssetTrade(asset)}
+                    >
                       Trade
                     </Button>
                   </CardFooter>
@@ -489,6 +532,7 @@ export function Dashboard() {
             ))}
           </div>
         </section>
+
       </div>
 
       {/* Activity Modal */}
@@ -503,15 +547,14 @@ export function Dashboard() {
               {allActivity.map((activity) => (
                 <div key={activity.id} className="flex items-center gap-3 rounded-lg border border-gray-200 p-3">
                   <div
-                    className={`flex size-10 items-center justify-center rounded-full ${
-                      activity.type === "purchase"
-                        ? "bg-green-100 text-green-600"
-                        : activity.type === "sale"
-                          ? "bg-red-100 text-red-600"
-                          : activity.type === "dividend"
-                            ? "bg-blue-100 text-blue-600"
-                            : "bg-purple-100 text-purple-600"
-                    }`}
+                    className={`flex size-10 items-center justify-center rounded-full ${activity.type === "purchase"
+                      ? "bg-green-100 text-green-600"
+                      : activity.type === "sale"
+                        ? "bg-red-100 text-red-600"
+                        : activity.type === "dividend"
+                          ? "bg-blue-100 text-blue-600"
+                          : "bg-purple-100 text-purple-600"
+                      }`}
                   >
                     {activity.type === "purchase" ? (
                       <TrendingUp className="size-5" />
