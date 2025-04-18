@@ -101,65 +101,67 @@ export function TrustTransparency() {
 
   const filteredTransactions = searchQuery
     ? transactions.filter(
-        (tx) =>
-          tx.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          tx.asset.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          tx.type.toLowerCase().includes(searchQuery.toLowerCase()),
-      )
+      (tx) =>
+        tx.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tx.asset.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tx.type.toLowerCase().includes(searchQuery.toLowerCase()),
+    )
     : transactions
 
   return (
     <div className="container py-8">
       <div className="mb-8 text-center">
-        <Badge className="mb-2 bg-primary/20 text-primary hover:bg-primary/20">Trust & Transparency</Badge>
-        <h1 className="font-display text-3xl font-bold text-gray-900 md:text-4xl">Verified Security</h1>
-        <p className="mt-2 text-gray-600">Ensuring trust and transparency in the UnityVault ecosystem</p>
+        <Badge className="mb-2 bg-primary/20 text-primary hover:bg-primary/20 dark:bg-primary/20 dark:text-primary hover:dark:bg-primary/20">Trust & Transparency</Badge>
+        <h1 className="font-display text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">Verified Security</h1>
+        <p className="mt-2 text-gray-600 dark:text-gray-400">Ensuring trust and transparency in the UnityVault ecosystem</p>
       </div>
+
 
       <div className="mb-12 grid gap-8 md:grid-cols-2">
         <div className="flex flex-col justify-center space-y-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h2 className="font-display text-2xl font-bold text-gray-900">Trust Score: 95/100</h2>
-            <p className="mt-2 text-gray-600">
+            <h2 className="font-display text-2xl font-bold text-gray-900 dark:text-white">Trust Score: 95/100</h2>
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
               Your UnityVault Trust Score reflects the security and reliability of your account and assets. Higher
               scores provide greater access to platform features and better rates.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-green-100">
-                <Shield className="size-6 text-green-600" />
+            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
+              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-800">
+                <Shield className="size-6 text-green-600 dark:text-green-400" />
               </div>
-              <h3 className="font-medium text-gray-900">100%</h3>
-              <p className="text-sm text-gray-500">Verified</p>
+              <h3 className="font-medium text-gray-900 dark:text-white">100%</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Verified</p>
             </div>
-            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-blue-100">
-                <Lock className="size-6 text-blue-600" />
+            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
+              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800">
+                <Lock className="size-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="font-medium text-gray-900">A+</h3>
-              <p className="text-sm text-gray-500">Security</p>
+              <h3 className="font-medium text-gray-900 dark:text-white">A+</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Security</p>
             </div>
-            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-purple-100">
-                <Eye className="size-6 text-purple-600" />
+            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
+              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-800">
+                <Eye className="size-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <h3 className="font-medium text-gray-900">100%</h3>
-              <p className="text-sm text-gray-500">Transparency</p>
+              <h3 className="font-medium text-gray-900 dark:text-white">100%</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Transparency</p>
             </div>
           </div>
 
-          <Button className="w-fit bg-primary text-primary-foreground hover:opacity-90">
+          <Button className="w-fit bg-primary text-primary-foreground hover:opacity-90 dark:bg-primary/80 dark:text-primary-foreground dark:hover:bg-primary/70">
             Improve Your Trust Score
           </Button>
         </div>
 
-        <div className="h-[300px] rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h3 className="mb-4 font-medium text-gray-900">Trust Score History</h3>
+        <div className="h-[300px] rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <h3 className="mb-4 font-medium text-gray-900 dark:text-white">Trust Score History</h3>
           <TrustScoreChart />
         </div>
       </div>
+
 
       <Tabs defaultValue="verification" onValueChange={setActiveTab} className="space-y-8">
         <div className="flex justify-center">
@@ -187,6 +189,7 @@ export function TrustTransparency() {
 
         <TabsContent value="verification" className="space-y-8">
           <div className="grid gap-6 md:grid-cols-2">
+            {/* Identity Verification Card */}
             <Card>
               <CardHeader>
                 <CardTitle>Identity Verification</CardTitle>
@@ -226,6 +229,7 @@ export function TrustTransparency() {
                   </Badge>
                 </div>
 
+                {/* Verified Information */}
                 <div className="rounded-lg bg-gray-50 p-3">
                   <h4 className="mb-2 font-medium text-gray-900">Verified Information</h4>
                   <div className="space-y-2 text-sm">
@@ -248,10 +252,11 @@ export function TrustTransparency() {
                   </div>
                 </div>
 
+                {/* Biometric Verification */}
                 <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
                   <div className="flex items-center gap-2">
                     <Fingerprint className="size-5 text-blue-600" />
-                    <span className="font-medium text-gray-900">Biometric Verification</span>
+                    <span className="font-medium text-gray-900 dark:text-white">Biometric Verification</span>
                   </div>
                   <Badge className="bg-green-50 text-green-600">Completed</Badge>
                 </div>
@@ -263,6 +268,7 @@ export function TrustTransparency() {
               </CardFooter>
             </Card>
 
+            {/* Asset Verification Card */}
             <Card>
               <CardHeader>
                 <CardTitle>Asset Verification</CardTitle>
@@ -302,10 +308,11 @@ export function TrustTransparency() {
                   </Badge>
                 </div>
 
+                {/* Assets List */}
                 <div className="space-y-3">
                   <div className="rounded-lg border border-gray-200 p-3">
                     <div className="mb-2 flex items-center justify-between">
-                      <div className="font-medium text-gray-900">Skyline Tower</div>
+                      <div className="font-medium text-gray-900 dark:text-white">Skyline Tower</div>
                       <Badge className="bg-green-50 text-green-600">Verified</Badge>
                     </div>
                     <div className="flex items-center justify-between text-sm">
@@ -324,7 +331,7 @@ export function TrustTransparency() {
 
                   <div className="rounded-lg border border-gray-200 p-3">
                     <div className="mb-2 flex items-center justify-between">
-                      <div className="font-medium text-gray-900">Digital Masterpiece</div>
+                      <div className="font-medium text-gray-900 dark:text-white">Digital Masterpiece</div>
                       <Badge className="bg-green-50 text-green-600">Verified</Badge>
                     </div>
                     <div className="flex items-center justify-between text-sm">
@@ -349,6 +356,7 @@ export function TrustTransparency() {
               </CardFooter>
             </Card>
 
+            {/* Compliance Verification Card */}
             <Card>
               <CardHeader>
                 <CardTitle>Compliance Verification</CardTitle>
@@ -388,6 +396,7 @@ export function TrustTransparency() {
                   </Badge>
                 </div>
 
+                {/* Compliance Status */}
                 <div className="rounded-lg bg-gray-50 p-3">
                   <h4 className="mb-2 font-medium text-gray-900">Compliance Status</h4>
                   <div className="space-y-2 text-sm">
@@ -410,11 +419,12 @@ export function TrustTransparency() {
                   </div>
                 </div>
 
+                {/* Compliance Documents */}
                 <div className="rounded-lg border border-gray-200 p-3">
                   <div className="flex items-center gap-2">
                     <FileText className="size-5 text-blue-600" />
                     <div>
-                      <div className="font-medium text-gray-900">Compliance Documents</div>
+                      <div className="font-medium text-gray-900 dark:text-white">Compliance Documents</div>
                       <div className="text-sm text-gray-500">
                         All required documents have been submitted and verified
                       </div>
@@ -429,6 +439,7 @@ export function TrustTransparency() {
               </CardFooter>
             </Card>
 
+            {/* Security Verification Card */}
             <Card>
               <CardHeader>
                 <CardTitle>Security Verification</CardTitle>
@@ -468,11 +479,12 @@ export function TrustTransparency() {
                   </Badge>
                 </div>
 
+                {/* Security Settings */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
                     <div className="flex items-center gap-2">
                       <Lock className="size-5 text-blue-600" />
-                      <span className="font-medium text-gray-900">Two-Factor Authentication</span>
+                      <span className="font-medium text-gray-900 dark:text-white">Two-Factor Authentication</span>
                     </div>
                     <Badge className="bg-green-50 text-green-600">Enabled</Badge>
                   </div>
@@ -480,7 +492,7 @@ export function TrustTransparency() {
                   <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
                     <div className="flex items-center gap-2">
                       <Shield className="size-5 text-blue-600" />
-                      <span className="font-medium text-gray-900">Hardware Wallet</span>
+                      <span className="font-medium text-gray-900 dark:text-white">Hardware Wallet</span>
                     </div>
                     <Badge className="bg-green-50 text-green-600">Connected</Badge>
                   </div>
@@ -488,7 +500,7 @@ export function TrustTransparency() {
                   <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
                     <div className="flex items-center gap-2">
                       <AlertCircle className="size-5 text-yellow-600" />
-                      <span className="font-medium text-gray-900">Recovery Options</span>
+                      <span className="font-medium text-gray-900 dark:text-white">Recovery Options</span>
                     </div>
                     <Badge className="bg-yellow-50 text-yellow-600">Incomplete</Badge>
                   </div>
@@ -513,58 +525,61 @@ export function TrustTransparency() {
           </div>
         </TabsContent>
 
+
         <TabsContent value="transactions" className="space-y-8">
-          <Card>
+          <Card className="bg-gray-800 text-white">
             <CardHeader>
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <CardTitle>Transaction History</CardTitle>
-                  <CardDescription>View and verify your transaction history</CardDescription>
+                  <CardTitle className="text-white">Transaction History</CardTitle>
+                  <CardDescription className="text-gray-400">View and verify your transaction history</CardDescription>
                 </div>
                 <div className="relative w-full sm:w-64">
                   <Search className="absolute left-2.5 top-2.5 size-4 text-gray-400" />
                   <Input
                     placeholder="Search transactions..."
-                    className="pl-8"
+                    className="pl-8 bg-gray-700 text-white placeholder-gray-400"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="bg-gray-800">
               <div className="space-y-4">
                 {filteredTransactions.length > 0 ? (
                   filteredTransactions.map((tx) => (
-                    <div key={tx.id} className="rounded-lg border border-gray-200 p-4">
+                    <div key={tx.id} className="rounded-lg border border-gray-700 p-4">
                       <div className="mb-3 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="font-medium text-gray-900">
+                            <h3 className="font-medium text-white">
                               {tx.type}: {tx.asset}
                             </h3>
                             <Badge
                               className={
-                                tx.status === "Completed" ? "bg-green-50 text-green-600" : "bg-blue-50 text-blue-600"
+                                tx.status === "Completed"
+                                  ? "bg-green-50 text-green-600"
+                                  : "bg-blue-50 text-blue-600"
                               }
                             >
                               {tx.status}
                             </Badge>
                           </div>
-                          <div className="text-sm text-gray-500">{tx.id}</div>
+                          <div className="text-sm text-gray-400">{tx.id}</div>
                         </div>
                         <div className="text-right">
-                          <div className="font-medium text-gray-900">{tx.amount}</div>
-                          <div className="text-sm text-gray-500">{tx.date}</div>
+                          <div className="font-medium text-white">{tx.amount}</div>
+                          <div className="text-sm text-gray-400">{tx.date}</div>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <BarChart3 className="size-4 text-blue-600" />
-                          <span className="text-sm text-gray-500">Trust Score:</span>
+                          <span className="text-sm text-gray-400">Trust Score:</span>
                           <div className="flex items-center gap-1">
-                            <span className="font-medium text-gray-900">{tx.trustScore}/100</span>
-                            <div className="h-2 w-16 rounded-full bg-gray-100">
+                            <span className="font-medium text-white">{tx.trustScore}/100</span>
+                            <div className="h-2 w-16 rounded-full bg-gray-600">
                               <div
                                 className="h-full rounded-full bg-gradient-to-r from-[#00A3FF] to-[#4ADE80]"
                                 style={{ width: `${tx.trustScore}%` }}
@@ -580,24 +595,29 @@ export function TrustTransparency() {
                     </div>
                   ))
                 ) : (
-                  <div className="rounded-lg border border-dashed border-gray-300 p-8 text-center">
-                    <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-gray-100">
+                  <div className="rounded-lg border border-dashed border-gray-600 p-8 text-center">
+                    <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-gray-700">
                       <Search className="size-6 text-gray-400" />
                     </div>
-                    <h3 className="mb-2 text-lg font-medium text-gray-900">No Transactions Found</h3>
-                    <p className="text-sm text-gray-600">
+                    <h3 className="mb-2 text-lg font-medium text-white">No Transactions Found</h3>
+                    <p className="text-sm text-gray-400">
                       No transactions match your search criteria. Try adjusting your search or view all transactions.
                     </p>
                   </div>
                 )}
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline">Export History</Button>
-              <Button variant="outline">View All</Button>
+            <CardFooter className="flex justify-between bg-gray-800">
+              <Button variant="outline" className="text-gray-400 hover:bg-gray-700">
+                Export History
+              </Button>
+              <Button variant="outline" className="text-gray-400 hover:bg-gray-700">
+                View All
+              </Button>
             </CardFooter>
           </Card>
         </TabsContent>
+
 
         <TabsContent value="audits" className="space-y-8">
           <div className="grid gap-6 md:grid-cols-3">

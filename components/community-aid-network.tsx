@@ -144,52 +144,66 @@ export function CommunityAidNetwork() {
   return (
     <div className="container py-8">
       <div className="mb-8 text-center">
-        <Badge className="mb-2 bg-primary/20 text-primary hover:bg-primary/20">Community Aid Network</Badge>
-        <h1 className="font-display text-3xl font-bold text-gray-900 md:text-4xl">Support Global Initiatives</h1>
-        <p className="mt-2 text-gray-600">Fund impactful projects and participate in community governance</p>
+        <Badge className="mb-2 bg-primary/20 text-primary hover:bg-primary/30 dark:bg-primary/10 dark:text-white dark:hover:bg-primary/20 transition-all">
+          Community Aid Network
+        </Badge>
+        <h1 className="font-display text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+          Support Global Initiatives
+        </h1>
+        <p className="mt-2 text-gray-600 dark:text-gray-300">
+          Fund impactful projects and participate in community governance
+        </p>
       </div>
 
+
       <div className="mb-12 grid gap-8 md:grid-cols-2">
+        {/* Left Section */}
         <div className="flex flex-col justify-center space-y-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h2 className="font-display text-2xl font-bold text-gray-900">Make a Global Impact</h2>
-            <p className="mt-2 text-gray-600">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="font-display text-2xl font-bold text-gray-900 dark:text-white">
+              Make a Global Impact
+            </h2>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">
               Our Community Aid Network connects tokenized assets with real-world impact. Support projects around the
               world and track your contributions with full transparency.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-blue-100">
-                <Globe className="size-6 text-blue-600" />
+          {/* Statistics Section */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {/* Individual Stat Cards */}
+            {[
+              { icon: <Globe className="size-6 text-blue-600" />, value: "25+", label: "Countries", bgColor: "bg-blue-100", textColor: "text-blue-600" },
+              { icon: <Heart className="size-6 text-green-600" />, value: "$2.4M+", label: "Donated", bgColor: "bg-green-100", textColor: "text-green-600" },
+              { icon: <Users className="size-6 text-purple-600" />, value: "50K+", label: "Lives Improved", bgColor: "bg-purple-100", textColor: "text-purple-600" }
+            ].map((stat, idx) => (
+              <div key={idx} className="rounded-lg border border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 p-4 text-center shadow-sm transition-all hover:scale-105">
+                <div className={`mx-auto mb-2 flex size-12 items-center justify-center rounded-full ${stat.bgColor}`}>
+                  {stat.icon}
+                </div>
+                <h3 className="font-medium text-gray-900 dark:text-white">{stat.value}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
               </div>
-              <h3 className="font-medium text-gray-900">25+</h3>
-              <p className="text-sm text-gray-500">Countries</p>
-            </div>
-            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-green-100">
-                <Heart className="size-6 text-green-600" />
-              </div>
-              <h3 className="font-medium text-gray-900">$2.4M+</h3>
-              <p className="text-sm text-gray-500">Donated</p>
-            </div>
-            <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm">
-              <div className="mx-auto mb-2 flex size-12 items-center justify-center rounded-full bg-purple-100">
-                <Users className="size-6 text-purple-600" />
-              </div>
-              <h3 className="font-medium text-gray-900">50K+</h3>
-              <p className="text-sm text-gray-500">Lives Improved</p>
-            </div>
+            ))}
+
           </div>
 
-          <Button className="w-fit bg-primary text-primary-foreground hover:opacity-90">Learn How It Works</Button>
+          {/* Call to Action Button */}
+          <Button className="w-fit bg-primary text-primary-foreground hover:opacity-90 dark:bg-primary dark:text-white dark:hover:opacity-80 transition-all">
+            Learn How It Works
+          </Button>
         </div>
 
-        <div className="h-[400px] rounded-xl bg-gradient-to-br from-blue-50 to-green-50 p-4">
+        {/* Right Section - Globe Visualization */}
+        <div className="h-[400px] rounded-xl bg-gradient-to-br from-blue-50 to-green-50 dark:from-blue-900 dark:to-green-900 p-4">
           <GlobeVisualization />
         </div>
       </div>
+
 
       <Tabs defaultValue="projects" onValueChange={setActiveTab} className="space-y-8">
         <div className="flex justify-center">
@@ -212,24 +226,32 @@ export function CommunityAidNetwork() {
         <TabsContent value="projects" className="space-y-8">
           {selectedProject ? (
             <div className="grid gap-8 md:grid-cols-3">
+              {/* Project Details Section */}
               <div className="md:col-span-2">
-                <Card>
+                <Card className="shadow-lg dark:bg-gray-800 dark:border-gray-700">
                   <CardHeader>
                     <div className="flex justify-between">
                       <div>
                         <Badge className="mb-2">{selectedProjectData?.category}</Badge>
-                        <CardTitle>{selectedProjectData?.title}</CardTitle>
-                        <CardDescription className="flex items-center gap-1">
+                        <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">
+                          {selectedProjectData?.title}
+                        </CardTitle>
+                        <CardDescription className="flex items-center gap-1 text-gray-600 dark:text-gray-300">
                           <Globe className="size-4" /> {selectedProjectData?.location}
                         </CardDescription>
                       </div>
-                      <Button variant="outline" size="sm" onClick={() => setSelectedProject(null)}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setSelectedProject(null)}
+                        className="hover:bg-gray-200 dark:hover:bg-gray-700"
+                      >
                         Back to Projects
                       </Button>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="overflow-hidden rounded-lg">
+                    <div className="overflow-hidden rounded-lg shadow-md">
                       <img
                         src={selectedProjectData?.image || "/placeholder.svg"}
                         alt={selectedProjectData?.title}
@@ -237,20 +259,25 @@ export function CommunityAidNetwork() {
                       />
                     </div>
 
+                    {/* Project Description */}
                     <div>
-                      <h3 className="mb-2 font-medium text-gray-900">Project Description</h3>
-                      <p className="text-gray-600">{selectedProjectData?.description}</p>
+                      <h3 className="mb-2 font-medium text-gray-900 dark:text-white">Project Description</h3>
+                      <p className="text-gray-600 dark:text-gray-300">{selectedProjectData?.description}</p>
                     </div>
 
+                    {/* Expected Impact */}
                     <div>
-                      <h3 className="mb-2 font-medium text-gray-900">Expected Impact</h3>
-                      <div className="rounded-lg bg-green-50 p-3 text-green-800">{selectedProjectData?.impact}</div>
+                      <h3 className="mb-2 font-medium text-gray-900 dark:text-white">Expected Impact</h3>
+                      <div className="rounded-lg bg-green-50 p-3 text-green-800 dark:bg-green-900 dark:text-green-200">
+                        {selectedProjectData?.impact}
+                      </div>
                     </div>
 
+                    {/* Funding Progress */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-500">Funding Progress</span>
-                        <span className="text-sm font-medium text-gray-900">
+                        <span className="text-sm text-gray-500 dark:text-gray-400">Funding Progress</span>
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">
                           ${selectedProjectData?.raised.toLocaleString()} of $
                           {selectedProjectData?.goal.toLocaleString()}
                         </span>
@@ -260,8 +287,8 @@ export function CommunityAidNetwork() {
                         className="h-2"
                       />
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-500">{selectedProjectData?.backers} backers</span>
-                        <span className="flex items-center gap-1 text-gray-500">
+                        <span className="text-gray-500 dark:text-gray-400">{selectedProjectData?.backers} backers</span>
+                        <span className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                           <Calendar className="size-4" /> {selectedProjectData?.daysLeft} days left
                         </span>
                       </div>
@@ -270,13 +297,15 @@ export function CommunityAidNetwork() {
                 </Card>
               </div>
 
+              {/* Donation Section */}
               <div>
-                <Card>
+                <Card className="shadow-lg dark:bg-gray-800 dark:border-gray-700">
                   <CardHeader>
                     <CardTitle>Make a Donation</CardTitle>
                     <CardDescription>Support this project with your contribution</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
+                    {/* Donation Amount */}
                     <div className="space-y-2">
                       <Label>Donation Amount (USDC)</Label>
                       <div className="relative">
@@ -286,14 +315,15 @@ export function CommunityAidNetwork() {
                           onChange={(e) => setDonationAmount(Number(e.target.value))}
                           className="pl-6"
                         />
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-500">$</div>
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-500 dark:text-gray-300">$</div>
                       </div>
                     </div>
 
+                    {/* Slider for Amount */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Label>Amount</Label>
-                        <span className="text-sm font-medium text-gray-900">${donationAmount}</span>
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">${donationAmount}</span>
                       </div>
                       <Slider
                         defaultValue={[100]}
@@ -304,19 +334,20 @@ export function CommunityAidNetwork() {
                         onValueChange={(value) => setDonationAmount(value[0])}
                         className="py-4"
                       />
-                      <div className="flex justify-between text-xs text-gray-500">
+                      <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                         <span>$10</span>
                         <span>$100</span>
                         <span>$1000</span>
                       </div>
                     </div>
 
-                    <div className="rounded-lg bg-gray-50 p-4">
-                      <h4 className="mb-3 font-medium text-gray-900">Your Impact</h4>
+                    {/* Your Impact */}
+                    <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-700 dark:text-gray-300">
+                      <h4 className="mb-3 font-medium text-gray-900 dark:text-white">Your Impact</h4>
                       <div className="space-y-2 text-sm">
                         <div className="flex items-center gap-2">
                           <CheckCircle2 className="size-4 text-green-600" />
-                          <span className="text-gray-600">
+                          <span className="text-gray-600 dark:text-gray-400">
                             {donationAmount >= 100
                               ? `Provides clean water for ${Math.floor(donationAmount / 10)} people`
                               : "Helps provide clean water access"}
@@ -324,17 +355,17 @@ export function CommunityAidNetwork() {
                         </div>
                         <div className="flex items-center gap-2">
                           <CheckCircle2 className="size-4 text-green-600" />
-                          <span className="text-gray-600">Transparent tracking of your donation</span>
+                          <span className="text-gray-600 dark:text-gray-400">Transparent tracking of your donation</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <CheckCircle2 className="size-4 text-green-600" />
-                          <span className="text-gray-600">Receive impact NFT as proof of contribution</span>
+                          <span className="text-gray-600 dark:text-gray-400">Receive impact NFT as proof of contribution</span>
                         </div>
                       </div>
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full bg-primary text-primary-foreground hover:opacity-90">
+                    <Button className="w-full bg-primary text-primary-foreground hover:opacity-90 dark:bg-primary dark:text-black dark:hover:opacity-80">
                       Donate Now
                       <Heart className="ml-2 size-4" />
                     </Button>
@@ -344,9 +375,10 @@ export function CommunityAidNetwork() {
             </div>
           ) : (
             <>
+              {/* Projects Listing */}
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                 {aidProjects.map((project) => (
-                  <Card key={project.id} className="overflow-hidden">
+                  <Card key={project.id} className="overflow-hidden dark:bg-gray-800 dark:border-gray-700">
                     <div className="aspect-video w-full overflow-hidden">
                       <img
                         src={project.image || "/placeholder.svg"}
@@ -357,33 +389,33 @@ export function CommunityAidNetwork() {
                     <CardHeader className="pb-2">
                       <div className="flex items-center justify-between">
                         <Badge>{project.category}</Badge>
-                        <div className="flex items-center gap-1 text-sm text-gray-500">
+                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
                           <Calendar className="size-4" /> {project.daysLeft} days left
                         </div>
                       </div>
-                      <CardTitle className="text-lg">{project.title}</CardTitle>
-                      <CardDescription className="flex items-center gap-1">
+                      <CardTitle className="text-lg text-gray-900 dark:text-white">{project.title}</CardTitle>
+                      <CardDescription className="flex items-center gap-1 text-gray-600 dark:text-gray-300">
                         <Globe className="size-4" /> {project.location}
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3 pb-3">
                       <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="text-gray-500">Raised: ${project.raised.toLocaleString()}</span>
-                          <span className="font-medium text-gray-900">
+                        <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                          <span>Raised: ${project.raised.toLocaleString()}</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
                             {Math.round((project.raised / project.goal) * 100)}%
                           </span>
                         </div>
                         <Progress value={(project.raised / project.goal) * 100} className="h-2" />
                       </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-500">Goal: ${project.goal.toLocaleString()}</span>
-                        <span className="text-gray-500">{project.backers} backers</span>
+                      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span>Goal: ${project.goal.toLocaleString()}</span>
+                        <span>{project.backers} backers</span>
                       </div>
                     </CardContent>
                     <CardFooter>
                       <Button
-                        className="w-full bg-primary text-primary-foreground hover:opacity-90"
+                        className="w-full bg-primary text-primary-foreground hover:opacity-90 dark:bg-primary dark:text-black dark:hover:opacity-80"
                         onClick={() => setSelectedProject(project.id)}
                       >
                         Support Project
@@ -393,23 +425,24 @@ export function CommunityAidNetwork() {
                 ))}
               </div>
 
+              {/* Completed Projects */}
               <div>
-                <h2 className="mb-4 font-display text-xl font-bold text-gray-900">Completed Projects</h2>
+                <h2 className="mb-4 font-display text-xl font-bold text-gray-900 dark:text-white">Completed Projects</h2>
                 <div className="grid gap-4 md:grid-cols-2">
                   {completedProjects.map((project) => (
-                    <Card key={project.id}>
+                    <Card key={project.id} className="dark:bg-gray-800 dark:border-gray-700">
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between">
-                          <CardTitle className="text-lg">{project.title}</CardTitle>
-                          <Badge variant="outline" className="bg-green-50 text-green-600">
+                          <CardTitle className="text-lg text-gray-900 dark:text-white">{project.title}</CardTitle>
+                          <Badge variant="outline" className="bg-green-50 text-green-600 dark:bg-green-900 dark:text-green-200">
                             Completed
                           </Badge>
                         </div>
-                        <CardDescription className="flex items-center gap-1">
+                        <CardDescription className="flex items-center gap-1 text-gray-600 dark:text-gray-300">
                           <Globe className="size-4" /> {project.location}
                         </CardDescription>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className="space-y-3">
                         <div className="flex gap-4">
                           <div className="size-16 overflow-hidden rounded-md bg-gray-100">
                             <img
@@ -419,21 +452,23 @@ export function CommunityAidNetwork() {
                             />
                           </div>
                           <div className="flex-1 space-y-2">
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm text-gray-500">Raised</span>
-                              <span className="font-medium text-gray-900">${project.raised.toLocaleString()}</span>
+                            <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                              <span>Raised</span>
+                              <span className="font-medium text-gray-900 dark:text-white">
+                                ${project.raised.toLocaleString()}
+                              </span>
                             </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm text-gray-500">Backers</span>
-                              <span className="font-medium text-gray-900">{project.backers}</span>
+                            <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                              <span>Backers</span>
+                              <span className="font-medium text-gray-900 dark:text-white">{project.backers}</span>
                             </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm text-gray-500">Completed</span>
-                              <span className="font-medium text-gray-900">{project.completionDate}</span>
+                            <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                              <span>Completed</span>
+                              <span className="font-medium text-gray-900 dark:text-white">{project.completionDate}</span>
                             </div>
                           </div>
                         </div>
-                        <div className="mt-3 rounded-lg bg-green-50 p-2 text-sm text-green-800">
+                        <div className="mt-3 rounded-lg bg-green-50 p-2 text-sm text-green-800 dark:bg-green-900 dark:text-green-200">
                           <div className="flex items-start gap-1">
                             <CheckCircle2 className="mt-0.5 size-4 flex-shrink-0" />
                             <span>{project.impact}</span>
@@ -447,6 +482,7 @@ export function CommunityAidNetwork() {
             </>
           )}
         </TabsContent>
+
 
         <TabsContent value="governance" className="space-y-8">
           <div className="grid gap-6 md:grid-cols-3">

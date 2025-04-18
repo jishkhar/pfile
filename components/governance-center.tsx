@@ -135,16 +135,23 @@ export function GovernanceCenter() {
   return (
     <div className="container py-8">
       <div className="mb-8 text-center">
-        <Badge className="mb-2 bg-primary/20 text-primary hover:bg-primary/20">Governance Center</Badge>
-        <h1 className="font-display text-3xl font-bold text-gray-900 md:text-4xl">Decentralized Governance</h1>
-        <p className="mt-2 text-gray-600">Participate in shaping the future of the UnityVault ecosystem</p>
+        <Badge className="mb-2 bg-primary/20 text-primary hover:bg-primary/30 dark:bg-primary/30 dark:text-primary-foreground dark:hover:bg-primary/40">
+          Governance Center
+        </Badge>
+        <h1 className="font-display text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+          Decentralized Governance
+        </h1>
+        <p className="mt-2 text-gray-600 dark:text-gray-400">
+          Participate in shaping the future of the UnityVault ecosystem
+        </p>
       </div>
+
 
       <div className="mb-12 grid gap-8 md:grid-cols-3">
         <div className="md:col-span-2">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h2 className="mb-4 font-display text-2xl font-bold text-gray-900">Governance Overview</h2>
-            <p className="mb-6 text-gray-600">
+            <h2 className="mb-4 font-display text-2xl font-bold text-gray-900 dark:text-white">Governance Overview</h2>
+            <p className="mb-6 text-gray-600 dark:text-gray-400">
               UnityVault governance allows token holders to propose and vote on changes to the protocol. Your voting
               power is determined by your token holdings and participation helps ensure the platform evolves in a way
               that benefits all stakeholders.
@@ -153,12 +160,12 @@ export function GovernanceCenter() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="flex size-12 items-center justify-center rounded-full bg-blue-100">
-                      <Vote className="size-6 text-blue-600" />
+                    <div className="flex size-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
+                      <Vote className="size-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-gray-900">3.2M</div>
-                      <div className="text-sm text-gray-500">Total Voting Power</div>
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">3.2M</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">Total Voting Power</div>
                     </div>
                   </div>
                 </CardContent>
@@ -166,12 +173,12 @@ export function GovernanceCenter() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="flex size-12 items-center justify-center rounded-full bg-green-100">
-                      <FileText className="size-6 text-green-600" />
+                    <div className="flex size-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                      <FileText className="size-6 text-green-600 dark:text-green-400" />
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-gray-900">12</div>
-                      <div className="text-sm text-gray-500">Active Proposals</div>
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">12</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">Active Proposals</div>
                     </div>
                   </div>
                 </CardContent>
@@ -179,12 +186,12 @@ export function GovernanceCenter() {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="flex size-12 items-center justify-center rounded-full bg-purple-100">
-                      <Users className="size-6 text-purple-600" />
+                    <div className="flex size-12 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900">
+                      <Users className="size-6 text-purple-600 dark:text-purple-400" />
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-gray-900">78%</div>
-                      <div className="text-sm text-gray-500">Participation Rate</div>
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">78%</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">Participation Rate</div>
                     </div>
                   </div>
                 </CardContent>
@@ -199,22 +206,22 @@ export function GovernanceCenter() {
               <CardDescription>Your participation and influence</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-lg bg-blue-50 p-4 text-center">
-                <div className="text-3xl font-bold text-blue-600">1,250</div>
-                <div className="text-sm text-blue-600">Voting Power</div>
+              <div className="rounded-lg bg-blue-50 dark:bg-blue-800 p-4 text-center">
+                <div className="text-3xl font-bold text-blue-600 dark:text-white">1,250</div>
+                <div className="text-sm text-blue-600 dark:text-white">Voting Power</div>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Proposals Voted</span>
-                  <span className="font-medium text-gray-900">8 / 10</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">Proposals Voted</span>
+                  <span className="font-medium text-gray-900 dark:text-white">8 / 10</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Proposals Created</span>
-                  <span className="font-medium text-gray-900">1</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">Proposals Created</span>
+                  <span className="font-medium text-gray-900 dark:text-white">1</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Delegated Power</span>
-                  <span className="font-medium text-gray-900">250</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">Delegated Power</span>
+                  <span className="font-medium text-gray-900 dark:text-white">250</span>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -229,6 +236,7 @@ export function GovernanceCenter() {
           </Card>
         </div>
       </div>
+
 
       <Tabs defaultValue="proposals" onValueChange={setActiveTab} className="space-y-8">
         <div className="flex justify-center">
@@ -598,7 +606,7 @@ export function GovernanceCenter() {
                           <span className="font-medium text-gray-900">
                             {Math.round(
                               (proposal.votes.yes / (proposal.votes.yes + proposal.votes.no + proposal.votes.abstain)) *
-                                100,
+                              100,
                             )}
                             % in favor
                           </span>

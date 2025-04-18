@@ -116,11 +116,18 @@ export function TradingPlatform() {
 
   return (
     <div className="container py-8">
-      <div className="mb-8 text-center">
-        <Badge className="mb-2 bg-primary/20 text-primary hover:bg-primary/20">Trading Platform</Badge>
-        <h1 className="font-display text-3xl font-bold text-gray-900 md:text-4xl">Trade Tokenized Assets</h1>
-        <p className="mt-2 text-gray-600">Buy and sell assets in the decentralized marketplace</p>
+      <div className="mb-8 text-center px-4 md:px-8">
+        <Badge className="mb-2 bg-primary/20 text-primary hover:bg-primary/30 dark:bg-primary/10 dark:text-primary">
+          Trading Platform
+        </Badge>
+        <h1 className="font-display text-3xl font-bold text-[#0B1D3A] dark:text-white md:text-4xl">
+          Trade Tokenized Assets
+        </h1>
+        <p className="mt-2 text-gray-600 dark:text-gray-400">
+          Buy and sell assets in the decentralized marketplace
+        </p>
       </div>
+
 
       <div className="grid gap-6 lg:grid-cols-4">
         {/* Asset Pairs Sidebar */}
@@ -165,38 +172,35 @@ export function TradingPlatform() {
         {/* Main Trading Area */}
         <div className="space-y-6 lg:col-span-3">
           {/* Price Chart */}
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
+          <Card className="bg-gradient-to-br from-[#0B1D3A0D] via-transparent to-white dark:from-[#0B1D3A]/10 dark:to-transparent rounded-2xl shadow-sm hover:shadow-md transition-all">
+            <CardHeader className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <div className="flex items-center gap-2">
-                  <CardTitle>{selectedPair.name}</CardTitle>
-                  <Badge variant="outline">24h Vol: ${selectedPair.volume}</Badge>
+                  <CardTitle className="text-[#0B1D3A] dark:text-white font-semibold">{selectedPair.name}</CardTitle>
+                  <Badge variant="outline" className="text-sm text-primary border-primary dark:text-teal-300 dark:border-teal-300">
+                    24h Vol: ${selectedPair.volume}
+                  </Badge>
                 </div>
-                <CardDescription>
-                  <span className="text-lg font-medium text-gray-900">${selectedPair.price.toFixed(2)}</span>
-                  <span className={`ml-2 text-sm ${selectedPair.change >= 0 ? "text-green-600" : "text-red-600"}`}>
+                <CardDescription className="mt-1 text-base text-[#0B1D3A] dark:text-white">
+                  <span className="text-lg font-semibold">${selectedPair.price.toFixed(2)}</span>
+                  <span className={`ml-2 text-sm ${selectedPair.change >= 0 ? "text-green-500" : "text-red-500"}`}>
                     {selectedPair.change >= 0 ? "+" : ""}
                     {selectedPair.change}%
                   </span>
                 </CardDescription>
               </div>
-              <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" className="h-8">
-                  <Clock className="mr-1 size-3" />
-                  1H
-                </Button>
-                <Button variant="secondary" size="sm" className="h-8">
-                  <Clock className="mr-1 size-3" />
-                  1D
-                </Button>
-                <Button variant="outline" size="sm" className="h-8">
-                  <Clock className="mr-1 size-3" />
-                  1W
-                </Button>
-                <Button variant="outline" size="sm" className="h-8">
-                  <Clock className="mr-1 size-3" />
-                  1M
-                </Button>
+              <div className="flex flex-wrap gap-2">
+                {["1H", "1D", "1W", "1M"].map((label, idx) => (
+                  <Button
+                    key={label}
+                    variant={label === "1D" ? "secondary" : "outline"}
+                    size="sm"
+                    className="h-8 flex items-center gap-1 text-sm"
+                  >
+                    <Clock className="size-3" />
+                    {label}
+                  </Button>
+                ))}
               </div>
             </CardHeader>
             <CardContent>
@@ -205,6 +209,7 @@ export function TradingPlatform() {
               </div>
             </CardContent>
           </Card>
+
 
           {/* Trading Interface */}
           <div className="grid gap-6 md:grid-cols-2">
@@ -312,10 +317,10 @@ export function TradingPlatform() {
             </Card>
 
             {/* Orderbook */}
-            <Card>
+            <Card className="bg-gradient-to-br from-[#0B1D3A0D] via-transparent to-white dark:from-[#0B1D3A]/10 dark:to-transparent rounded-2xl shadow-sm hover:shadow-md transition-all">
               <CardHeader>
-                <CardTitle>Orderbook</CardTitle>
-                <CardDescription>Market depth and orders</CardDescription>
+                <CardTitle className="text-[#0B1D3A] dark:text-white font-semibold">Orderbook</CardTitle>
+                <CardDescription className="text-muted-foreground">Market depth and orders</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="mb-4 h-[300px]">
@@ -323,7 +328,7 @@ export function TradingPlatform() {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="grid grid-cols-3 gap-2 text-xs font-medium text-gray-500">
+                  <div className="grid grid-cols-3 gap-2 text-xs font-medium text-muted-foreground">
                     <div>Price ({selectedPair.name.split("/")[1]})</div>
                     <div className="text-right">Amount ({selectedPair.name.split("/")[0]})</div>
                     <div className="text-right">Total</div>
@@ -333,9 +338,9 @@ export function TradingPlatform() {
                   <div className="space-y-1">
                     {orderbook.asks.map((ask, index) => (
                       <div key={index} className="grid grid-cols-3 gap-2 text-sm">
-                        <div className="text-red-600">{ask.price.toFixed(2)}</div>
-                        <div className="text-right text-gray-900">{ask.amount.toLocaleString()}</div>
-                        <div className="text-right text-gray-500">{(ask.price * ask.amount).toLocaleString()}</div>
+                        <div className="text-red-500">{ask.price.toFixed(2)}</div>
+                        <div className="text-right text-foreground">{ask.amount.toLocaleString()}</div>
+                        <div className="text-right text-muted-foreground">{(ask.price * ask.amount).toLocaleString()}</div>
                       </div>
                     ))}
                   </div>
@@ -353,52 +358,62 @@ export function TradingPlatform() {
                   <div className="space-y-1">
                     {orderbook.bids.map((bid, index) => (
                       <div key={index} className="grid grid-cols-3 gap-2 text-sm">
-                        <div className="text-green-600">{bid.price.toFixed(2)}</div>
-                        <div className="text-right text-gray-900">{bid.amount.toLocaleString()}</div>
-                        <div className="text-right text-gray-500">{(bid.price * bid.amount).toLocaleString()}</div>
+                        <div className="text-green-500">{bid.price.toFixed(2)}</div>
+                        <div className="text-right text-foreground">{bid.amount.toLocaleString()}</div>
+                        <div className="text-right text-muted-foreground">{(bid.price * bid.amount).toLocaleString()}</div>
                       </div>
                     ))}
                   </div>
                 </div>
               </CardContent>
             </Card>
+
           </div>
 
           {/* Recent Transactions */}
-          <Card>
+          <Card className="bg-gradient-to-br from-[#0B1D3A0D] via-transparent to-white dark:from-[#0B1D3A]/10 dark:to-transparent rounded-2xl shadow-sm hover:shadow-md transition-all">
             <CardHeader>
-              <CardTitle>Recent Transactions</CardTitle>
-              <CardDescription>Your trading activity</CardDescription>
+              <CardTitle className="text-[#0B1D3A] dark:text-white font-semibold">Recent Transactions</CardTitle>
+              <CardDescription className="text-muted-foreground">Your trading activity</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {recentTransactions.map((tx) => (
-                  <div key={tx.id} className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
+                  <div
+                    key={tx.id}
+                    className="flex items-center justify-between rounded-xl border border-border bg-white/40 p-3 backdrop-blur-md dark:bg-white/5"
+                  >
                     <div className="flex items-center gap-3">
                       <div
-                        className={`flex size-10 items-center justify-center rounded-full ${tx.type === "Buy" ? "bg-green-100" : "bg-red-100"}`}
+                        className={`flex size-10 items-center justify-center rounded-full ${tx.type === "Buy" ? "bg-green-100 dark:bg-green-900/20" : "bg-red-100 dark:bg-red-900/20"
+                          }`}
                       >
                         {tx.type === "Buy" ? (
-                          <TrendingUp className="size-5 text-green-600" />
+                          <TrendingUp className="size-5 text-green-600 dark:text-green-400" />
                         ) : (
-                          <TrendingDown className="size-5 text-red-600" />
+                          <TrendingDown className="size-5 text-red-600 dark:text-red-400" />
                         )}
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-gray-900">
+                          <span className="font-medium text-foreground">
                             {tx.type} {tx.pair}
                           </span>
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs text-muted-foreground">
                             {tx.time}
                           </Badge>
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-muted-foreground">
                           {tx.amount} @ ${tx.price} = ${tx.total}
                         </div>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" onClick={() => handleViewTransaction(tx)}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-lg px-3 py-1 text-sm"
+                      onClick={() => handleViewTransaction(tx)}
+                    >
                       <ExternalLink className="mr-1 size-4" />
                       View
                     </Button>
@@ -407,76 +422,60 @@ export function TradingPlatform() {
               </div>
             </CardContent>
           </Card>
+
         </div>
       </div>
 
       {/* Transaction Details Modal */}
       <Dialog open={showTransactionModal} onOpenChange={setShowTransactionModal}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md rounded-2xl bg-white/40 backdrop-blur-md shadow-lg dark:bg-[#0B1D3A]/60">
           <DialogHeader>
-            <DialogTitle>Transaction Details</DialogTitle>
-            <DialogDescription>Complete information about this transaction</DialogDescription>
+            <DialogTitle className="text-[#0B1D3A] dark:text-white">Transaction Details</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
+              Complete information about this transaction
+            </DialogDescription>
           </DialogHeader>
+
           {selectedTransaction && (
-            <div className="space-y-4 py-4">
-              <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3">
-                <span className="text-sm font-medium text-gray-500">Transaction Type</span>
-                <span
-                  className={`font-medium ${selectedTransaction.type === "Buy" ? "text-green-600" : "text-red-600"}`}
+            <div className="space-y-5 py-4">
+              {/* Transaction Type Badge */}
+              <div
+                className={`flex items-center justify-between rounded-xl px-4 py-3 ${selectedTransaction.type === "Buy"
+                    ? "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400"
+                    : "bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400"
+                  }`}
+              >
+                <span className="text-sm font-medium">Transaction Type</span>
+                <span className="text-sm font-semibold">{selectedTransaction.type}</span>
+              </div>
+
+              {/* Info Grid */}
+              <div className="space-y-3">
+                {[
+                  ["Transaction Hash", selectedTransaction.id],
+                  ["Asset Pair", selectedTransaction.pair],
+                  ["Price", `$${selectedTransaction.price}`],
+                  ["Amount", `${selectedTransaction.amount} ${selectedTransaction.pair.split("/")[0]}`],
+                  ["Total Value", `$${selectedTransaction.total} ${selectedTransaction.pair.split("/")[1]}`],
+                  ["Fee", selectedTransaction.fee],
+                  ["From", selectedTransaction.from],
+                  ["To", selectedTransaction.to],
+                  ["Block Number", selectedTransaction.blockNumber],
+                  ["Time", selectedTransaction.time],
+                ].map(([label, value], idx) => (
+                  <div key={idx} className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">{label}</span>
+                    <span className="text-sm font-medium text-foreground">{value}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* View on Explorer */}
+              <div className="pt-4">
+                <Button
+                  variant="outline"
+                  className="w-full rounded-xl bg-white/70 text-primary hover:bg-white dark:bg-white/10 dark:hover:bg-white/20"
                 >
-                  {selectedTransaction.type}
-                </span>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Transaction Hash</span>
-                  <span className="font-medium text-gray-900">{selectedTransaction.id}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Asset Pair</span>
-                  <span className="font-medium text-gray-900">{selectedTransaction.pair}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Price</span>
-                  <span className="font-medium text-gray-900">${selectedTransaction.price}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Amount</span>
-                  <span className="font-medium text-gray-900">
-                    {selectedTransaction.amount} {selectedTransaction.pair.split("/")[0]}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Total Value</span>
-                  <span className="font-medium text-gray-900">
-                    ${selectedTransaction.total} {selectedTransaction.pair.split("/")[1]}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Fee</span>
-                  <span className="font-medium text-gray-900">{selectedTransaction.fee}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">From</span>
-                  <span className="font-medium text-gray-900">{selectedTransaction.from}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">To</span>
-                  <span className="font-medium text-gray-900">{selectedTransaction.to}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Block Number</span>
-                  <span className="font-medium text-gray-900">{selectedTransaction.blockNumber}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Time</span>
-                  <span className="font-medium text-gray-900">{selectedTransaction.time}</span>
-                </div>
-              </div>
-
-              <div className="flex justify-center pt-4">
-                <Button variant="outline" className="w-full">
                   <ExternalLink className="mr-2 size-4" />
                   View on Explorer
                 </Button>
@@ -485,6 +484,7 @@ export function TradingPlatform() {
           )}
         </DialogContent>
       </Dialog>
+
     </div>
   )
 }
